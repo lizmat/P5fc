@@ -2,6 +2,10 @@ Revision history for P5fc
 
 {{$NEXT}}
 
+0.0.4  2018-04-25T21:49:15+02:00
+    - add authority to the version information
+    - fix global replace-o
+
 0.0.3  2018-04-25T18:51:23+02:00
     - P5fc must be a module, not a class
 
