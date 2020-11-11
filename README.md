@@ -1,7 +1,7 @@
 NAME
 ====
 
-P5fc - Implement Perl's fc() built-in
+Raku port of Perl's fc() built-in
 
 SYNOPSIS
 ========
@@ -17,7 +17,7 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-This module tries to mimic the behaviour of the `fc` functionn of Perl as closely as possible.
+This module tries to mimic the behaviour of Perl's `fc` built-in as closely as possible in the Raku Programming Language..
 
 ORIGINAL PERL 5 DOCUMENTATION
 =============================
@@ -78,6 +78,21 @@ ORIGINAL PERL 5 DOCUMENTATION
             or when prefixed with "CORE::"; See feature. Alternately, include
             a "use v5.16" or later to the current scope.
 
+PORTING CAVEATS
+===============
+
+In future language versions of Raku, it will become impossible to access the `$_` variable of the caller's scope, because it will not have been marked as a dynamic variable. So please consider changing:
+
+    fc;
+
+to either:
+
+    fc($_);
+
+or, using the subroutine as a method syntax, with the prefix `.` shortcut to use that scope's `$_` as the invocant:
+
+    .&fc;
+
 AUTHOR
 ======
 
@@ -88,7 +103,7 @@ Source can be located at: https://github.com/lizmat/P5fc . Comments and Pull Req
 COPYRIGHT AND LICENSE
 =====================
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

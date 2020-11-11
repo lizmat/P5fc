@@ -1,6 +1,6 @@
-use v6.c;
+use v6.*;
 
-unit module P5fc:ver<0.0.6>:auth<cpan:ELIZABETH>;
+unit module P5fc:ver<0.0.7>:auth<cpan:ELIZABETH>;
 
 proto sub fc(|) is export {*}
 multi sub fc(         --> Str:D) { (CALLERS::<$_>).fc }
@@ -10,7 +10,7 @@ multi sub fc(Str() $s --> Str:D) { $s.fc              }
 
 =head1 NAME
 
-P5fc - Implement Perl's fc() built-in
+Raku port of Perl's fc() built-in
 
 =head1 SYNOPSIS
 
@@ -24,8 +24,8 @@ P5fc - Implement Perl's fc() built-in
 
 =head1 DESCRIPTION
 
-This module tries to mimic the behaviour of the C<fc> functionn of Perl as
-closely as possible.
+This module tries to mimic the behaviour of Perl's C<fc> built-in as
+closely as possible in the Raku Programming Language..
 
 =head1 ORIGINAL PERL 5 DOCUMENTATION
 
@@ -85,6 +85,23 @@ closely as possible.
             or when prefixed with "CORE::"; See feature. Alternately, include
             a "use v5.16" or later to the current scope.
 
+=head1 PORTING CAVEATS
+
+In future language versions of Raku, it will become impossible to access the
+C<$_> variable of the caller's scope, because it will not have been marked as
+a dynamic variable.  So please consider changing:
+
+    fc;
+
+to either:
+
+    fc($_);
+
+or, using the subroutine as a method syntax, with the prefix C<.> shortcut
+to use that scope's C<$_> as the invocant:
+
+    .&fc;
+
 =head1 AUTHOR
 
 Elizabeth Mattijsen <liz@wenzperl.nl>
@@ -94,10 +111,12 @@ Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018-2019 Elizabeth Mattijsen
+Copyright 2018-2020 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
 =end pod
+
+# vim: expandtab shiftwidth=4
