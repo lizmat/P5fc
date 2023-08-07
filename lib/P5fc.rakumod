@@ -1,9 +1,7 @@
-use v6.*;
-
-unit module P5fc:ver<0.0.8>:auth<zef:lizmat>;
+use v6.d;
 
 proto sub fc(|) is export {*}
-multi sub fc(         --> Str:D) { (CALLERS::<$_>).fc }
+multi sub fc(         --> Str:D) { (CALLER::LEXICAL::<$_>).fc }
 multi sub fc(Str() $s --> Str:D) { $s.fc              }
 
 =begin pod
@@ -106,12 +104,16 @@ to use that scope's C<$_> as the invocant:
 
 Elizabeth Mattijsen <liz@raku.rocks>
 
+If you like this module, or what I’m doing more generally, committing to a
+L<small sponsorship|https://github.com/sponsors/lizmat/>  would mean a great
+deal to me!
+
 Source can be located at: https://github.com/lizmat/P5fc . Comments and
 Pull Requests are welcome.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright 2018, 2019, 2020, 2021 Elizabeth Mattijsen
+Copyright 2018, 2019, 2020, 2021, 2023 Elizabeth Mattijsen
 
 Re-imagined from Perl as part of the CPAN Butterfly Plan.
 

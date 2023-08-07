@@ -2,10 +2,9 @@ use v6.*;
 use Test;
 use P5fc;
 
-plan 8;
+plan 7;
 
 ok defined(::('&fc')),      'is &fc imported?';
-ok !defined(P5fc::{'&fc'}), 'is &fc externally NOT accessible?';
 
 is fc('FOO'), 'foo', 'did we get a good foo';
 is fc('foo'), 'foo', 'did we get same foo';
